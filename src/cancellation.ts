@@ -1,9 +1,10 @@
 import { Contract, Signer } from 'ethers'
 import { Safe } from '@gnosis.pm/safe-core-sdk'
+import { rejectTx } from '@rsksmart/safe-transactions-sdk'
 import { approveAndExecute, logSubtitle, logCount } from './utils'
 
-export const raw = async (safeSdk: Safe, owners: Signer[], counter: Contract) => {
-  logSubtitle('Raw tx')
+export const cancellation = async (safeSdk: Safe, owners: Signer[], counter: Contract) => {
+  logSubtitle('Cancellation')
 
   const safe1 = await safeSdk.connect(owners[0]) as any as Safe
   const safe2 = await safeSdk.connect(owners[1]) as any as Safe
@@ -19,7 +20,15 @@ export const raw = async (safeSdk: Safe, owners: Signer[], counter: Contract) =>
     operation: 0 // call
   })
 
-  await approveAndExecute(safe1, safe2)(tx)
+  const cancellationTx = await rejectTx(safe1, tx)
+
+  await approveAndExecute(safe1, safe2)(cancellationTx)
+
+  try {
+    await approveAndExecute(safe1, safe2)(tx)
+  } catch (e) {
+    console.log('Catched error', `...${e.message.slice(67, 180)}...`)
+  }
 
   await logCount(counter)
   console.log()

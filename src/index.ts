@@ -6,6 +6,7 @@ import { polices } from './polices'
 import { erc20 as erc20script } from './erc20'
 import { raw } from './raw'
 import { offchain } from './offchain'
+import { cancellation } from './cancellation'
 
 console.log(`
 ██████╗ ██╗███████╗    ███╗   ███╗██╗   ██╗██╗  ████████╗██╗███████╗██╗ ██████╗
@@ -40,6 +41,7 @@ const main = async () => {
   await erc20script(safeSdk, owners, erc20)
   await raw(safeSdk, owners, counter)
   await offchain(safeSdk, owners, counter)
+  await cancellation(safeSdk, owners, counter)
 }
 
 main()

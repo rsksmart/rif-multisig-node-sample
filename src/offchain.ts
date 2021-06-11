@@ -1,10 +1,6 @@
-import { BigNumber, Contract, Signer } from 'ethers'
+import { Contract, Signer } from 'ethers'
 import { Safe } from '@gnosis.pm/safe-core-sdk'
-import { approveAndExecute, logSubtitle } from './utils'
-
-const logCount = async (counter: Contract) => {
-  console.log('Count', await counter.count().then((r: BigNumber) => r.toNumber()))
-}
+import { logSubtitle, logCount } from './utils'
 
 export const offchain = async (safeSdk: Safe, owners: Signer[], counter: Contract) => {
   logSubtitle('Off chain signatures')
