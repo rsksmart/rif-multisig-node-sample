@@ -38,4 +38,5 @@ export const gas = async (safeSdk: Safe, owners: Signer[]) => {
   await logBalance(safe1)
 
   console.log('"to" balance', await safeSdk.getProvider().getBalance(to).then(r => r.toNumber()))
+  console.log()
 }

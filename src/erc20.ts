@@ -35,4 +35,5 @@ export const erc20 = async (safeSdk: Safe, owners: Signer[], erc20: Contract) =>
   await logBalance(safe1, erc20)
 
   console.log('"to" balance', await erc20.balanceOf(to).then((r: BigNumber) => r.toNumber()))
+  console.log()
 }

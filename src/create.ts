@@ -11,5 +11,6 @@ export const createSafeFactory = (...args: ConstructorParameters<typeof EthersSa
     owners, threshold
   })
   console.log('Safe created', await safe.getAddress())
+  console.log()
   return safe
 }
