@@ -5,6 +5,7 @@ import { gas } from './gas'
 import { polices } from './polices'
 import { erc20 as erc20script } from './erc20'
 import { raw } from './raw'
+import { offchain } from './offchain'
 
 console.log(`
 ██████╗ ██╗███████╗    ███╗   ███╗██╗   ██╗██╗  ████████╗██╗███████╗██╗ ██████╗
@@ -32,10 +33,13 @@ const main = async () => {
     2
   )
 
-  //await polices(safeSdk, [owner1, owner2, owner3, await provider.getSigner(3)])
-  // await gas(safeSdk, [owner1, owner2, owner3])
-  // await erc20script(safeSdk, [owner1, owner2, owner3], erc20)
-  await raw(safeSdk, [owner1, owner2, owner3], counter)
+  const owners = [owner1, owner2, owner3]
+
+  await polices(safeSdk, [...owners, await provider.getSigner(3)])
+  await gas(safeSdk, owners)
+  await erc20script(safeSdk, owners, erc20)
+  await raw(safeSdk, owners, counter)
+  await offchain(safeSdk, owners, counter)
 }
 
 main()
