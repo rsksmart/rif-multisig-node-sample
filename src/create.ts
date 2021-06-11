@@ -1,8 +1,10 @@
 import { EthersSafeFactory } from '@rsksmart/safe-factory-sdk'
 import chalk from 'chalk'
+import { logSubtitle } from './utils'
 
 export const createSafeFactory = (...args: ConstructorParameters<typeof EthersSafeFactory>) => async (owners: string[], threshold: number) => {
-  console.log(chalk.cyan('Creating a new multi-sig wallet'))
+  logSubtitle('Creating a new multi-sig wallet')
+
   console.log('Owners', owners)
   console.log('Threshold', threshold)
   const factory = new EthersSafeFactory(...args)

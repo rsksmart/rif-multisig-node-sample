@@ -1,6 +1,7 @@
 import { providers } from 'ethers'
 import { createSafeFactory } from './create'
 import { deployContracts } from './deploy'
+import { gas } from './gas'
 import { polices } from './polices'
 
 console.log(`
@@ -31,7 +32,7 @@ const main = async () => {
   console.log()
 
   await polices(safeSdk, [owner1, owner2, owner3, await provider.getSigner(4)])
-  console.log()
+  await gas(safeSdk, [owner1, owner2, owner3])
 }
 
 main()

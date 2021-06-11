@@ -1,16 +1,19 @@
 import { Signer } from '@ethersproject/abstract-signer'
 import { Safe } from '@gnosis.pm/safe-core-sdk'
 import chalk from 'chalk'
+import { logSubtitle } from './utils'
+
+const logGrey = (text: string, ...rest: any) => console.log(chalk.gray(text), ...rest)
 
 const logPolices = async (safe: Safe) => {
-  console.log(chalk.gray('Current polices'))
-  console.log(chalk.gray(`Owners`), await safe.getOwners())
-  console.log(chalk.gray(`Threshold`), await safe.getThreshold())
+  logGrey('Current polices')
+  logGrey(`Owners`, await safe.getOwners())
+  logGrey(`Threshold`, await safe.getThreshold())
   console.log()
 }
 
 export const polices = async (safeSdk: Safe, owners: Signer[]) => {
-  console.log(chalk.cyan('Polices'))
+  logSubtitle('Polices')
   await logPolices(safeSdk)
 
   const safe1 = await safeSdk.connect(owners[0]) as any as Safe
@@ -65,8 +68,7 @@ export const polices = async (safeSdk: Safe, owners: Signer[]) => {
   await logPolices(safe1)
 
   // setting back the threshold to 2
-  const changeThresholdTx2 = await safe1.getChangeThresholdTx(3)
-
+  const changeThresholdTx2 = await safe1.getChangeThresholdTx(2)
   const changeThresholdTxHash2 = await safe1.getTransactionHash(changeThresholdTx2)
   await safe1.approveTransactionHash(changeThresholdTxHash2).then(tx => tx.wait())
   await safe2.approveTransactionHash(changeThresholdTxHash2).then(tx => tx.wait())
