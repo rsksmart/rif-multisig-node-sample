@@ -21,6 +21,7 @@
   "dependencies": {
     "@gnosis.pm/safe-core-sdk": "^0.1.2",
     "@rsksmart/safe-factory-sdk": "0.0.1-beta.1",
+    "@rsksmart/safe-transactions-sdk": "0.0.1-beta.1",
     "chalk": "^4.1.1",
     "ethers": "^5.3.1"
   }

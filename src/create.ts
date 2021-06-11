@@ -1,5 +1,4 @@
 import { EthersSafeFactory } from '@rsksmart/safe-factory-sdk'
-import chalk from 'chalk'
 import { logSubtitle } from './utils'
 
 export const createSafeFactory = (...args: ConstructorParameters<typeof EthersSafeFactory>) => async (owners: string[], threshold: number) => {

@@ -1,6 +1,6 @@
-import { Signer } from "@ethersproject/abstract-signer";
-import { Safe } from "@gnosis.pm/safe-core-sdk";
-import { approveAndExecute, logSubtitle } from "./utils";
+import { Signer } from 'ethers';
+import { Safe } from '@gnosis.pm/safe-core-sdk';
+import { approveAndExecute, logSubtitle } from './utils';
 
 const logBalance = async (safeSdk: Safe) => {
   console.log('Balance', await safeSdk.getProvider().getBalance(await safeSdk.getAddress()).then(r => r.toNumber()))

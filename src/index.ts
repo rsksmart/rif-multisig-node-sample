@@ -3,6 +3,7 @@ import { createSafeFactory } from './create'
 import { deployContracts } from './deploy'
 import { gas } from './gas'
 import { polices } from './polices'
+import { erc20 as erc20script } from './erc20'
 
 console.log(`
 ██████╗ ██╗███████╗    ███╗   ███╗██╗   ██╗██╗  ████████╗██╗███████╗██╗ ██████╗
@@ -16,12 +17,12 @@ console.log(`
 const main = async () => {
   const provider = new providers.JsonRpcProvider()
   const deployer = await provider.getSigner(0)
-  const { safeFactory, safe } = await deployContracts(deployer)
+  const { safeFactory, safe, erc20 } = await deployContracts(deployer)
   console.log()
 
-  const owner1 = provider.getSigner(1)
-  const owner2 = provider.getSigner(2)
-  const owner3 = provider.getSigner(3)
+  const owner1 = provider.getSigner(0)
+  const owner2 = provider.getSigner(1)
+  const owner3 = provider.getSigner(2)
 
   const createSafe = createSafeFactory(owner1, safeFactory.address, safe.address)
 
@@ -31,8 +32,11 @@ const main = async () => {
   )
   console.log()
 
-  await polices(safeSdk, [owner1, owner2, owner3, await provider.getSigner(4)])
+  await polices(safeSdk, [owner1, owner2, owner3, await provider.getSigner(3)])
   await gas(safeSdk, [owner1, owner2, owner3])
+  console.log()
+  await erc20script(safeSdk, [owner1, owner2, owner3], erc20)
+  console.log()
 }
 
 main()
