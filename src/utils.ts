@@ -2,6 +2,8 @@ import { Contract, BigNumber } from 'ethers'
 import { Safe, SafeTransaction } from "@gnosis.pm/safe-core-sdk";
 import chalk from "chalk";
 
+export const logGrey = (text: string, ...rest: any) => console.log(chalk.gray(text), ...rest)
+
 export const logSubtitle = (subtitle: string) => console.log(chalk.cyan(subtitle))
 
 export const approveAndExecute = (safe1: Safe, safe2: Safe) => async (safeTransaction: SafeTransaction) => {
@@ -12,5 +14,5 @@ export const approveAndExecute = (safe1: Safe, safe2: Safe) => async (safeTransa
 }
 
 export const logCount = async (counter: Contract) => {
-  console.log('Count', await counter.count().then((r: BigNumber) => r.toNumber()))
+  logGrey('Count', await counter.count().then((r: BigNumber) => r.toNumber()))
 }

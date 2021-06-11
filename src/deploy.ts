@@ -1,5 +1,5 @@
 import { ContractFactory, Signer } from 'ethers'
-import { logSubtitle } from './utils'
+import { logSubtitle, logGrey } from './utils'
 
 import SafeFactory from './contracts/SafeFactory.json'
 import Safe from './contracts/Safe.json'
@@ -21,8 +21,8 @@ export const deployContracts = async (signer: Signer) => {
   const erc20 = await simpleDeploy(ERC20.abi, ERC20.bytecode, signer)(signer.getAddress(), '0x1000000000000000000000', 'RIFOS', 'RIF')
   const counter = await simpleDeploy(Counter.abi, Counter.bytecode, signer)()
 
-  console.log('Gnosis Safe Factory', safeFactory.address)
-  console.log('Gnosis Safe', safe.address)
+  logGrey('Gnosis Safe Factory', safeFactory.address)
+  logGrey('Gnosis Safe', safe.address)
 
   return { safeFactory, safe, erc20, counter }
 }

@@ -1,10 +1,10 @@
 import { Signer, Contract, ContractTransaction, BigNumber } from 'ethers';
 import { Safe } from '@gnosis.pm/safe-core-sdk';
 import { ERC20TransactionBuilder } from '@rsksmart/safe-transactions-sdk';
-import { approveAndExecute, logSubtitle } from './utils';
+import { approveAndExecute, logSubtitle, logGrey } from './utils';
 
 const logBalance = async (safeSdk: Safe, erc20: Contract) => {
-  console.log('Balance', await erc20.balanceOf(await safeSdk.getAddress()).then((r: BigNumber) => r.toNumber()))
+  logGrey('Balance', await erc20.balanceOf(await safeSdk.getAddress()).then((r: BigNumber) => r.toNumber()))
 }
 
 export const erc20 = async (safeSdk: Safe, owners: Signer[], erc20: Contract) => {

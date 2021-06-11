@@ -1,9 +1,6 @@
 import { Signer } from '@ethersproject/abstract-signer'
 import { Safe } from '@gnosis.pm/safe-core-sdk'
-import chalk from 'chalk'
-import { logSubtitle } from './utils'
-
-const logGrey = (text: string, ...rest: any) => console.log(chalk.gray(text), ...rest)
+import { logSubtitle, logGrey } from './utils'
 
 const logPolices = async (safe: Safe) => {
   logGrey('Current polices')

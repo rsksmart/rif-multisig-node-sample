@@ -1,9 +1,9 @@
 import { Signer } from 'ethers';
 import { Safe } from '@gnosis.pm/safe-core-sdk';
-import { approveAndExecute, logSubtitle } from './utils';
+import { approveAndExecute, logSubtitle, logGrey } from './utils';
 
 const logBalance = async (safeSdk: Safe) => {
-  console.log('Balance', await safeSdk.getProvider().getBalance(await safeSdk.getAddress()).then(r => r.toNumber()))
+  logGrey('Balance', await safeSdk.getProvider().getBalance(await safeSdk.getAddress()).then(r => r.toNumber()))
 }
 
 export const gas = async (safeSdk: Safe, owners: Signer[]) => {
@@ -37,6 +37,6 @@ export const gas = async (safeSdk: Safe, owners: Signer[]) => {
 
   await logBalance(safe1)
 
-  console.log('"to" balance', await safeSdk.getProvider().getBalance(to).then(r => r.toNumber()))
+  logGrey('"to" balance', await safeSdk.getProvider().getBalance(to).then(r => r.toNumber()))
   console.log()
 }
