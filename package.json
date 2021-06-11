@@ -1,0 +1,20 @@
+{
+  "name": "rif-ts-script-template",
+  "version": "1.0.0",
+  "description": "RIF Typescript script template",
+  "private": true,
+  "scripts": {
+    "build": "npx tsc",
+    "build:watch": "npx tsc --watch",
+    "start": "node build/index.js",
+    "start:watch": "npx nodemon build/index.js",
+    "dev": "npx concurrently \"npm run build:watch\" \"npm run start:watch\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.7",
+    "typescript": "^4.3.2"
+  }
+}
