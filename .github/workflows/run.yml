@@ -21,6 +21,8 @@ jobs:
 
     - name: Install dependencies
       run: npm i
+    - name: Run Ganache
+      run: npx ganache-cli &
     - name: Compile
       run: npm run build
     - name: Run the script
