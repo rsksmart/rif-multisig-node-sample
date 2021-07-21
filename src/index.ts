@@ -7,6 +7,7 @@ import { erc20 as erc20script } from './erc20'
 import { raw } from './raw'
 import { offchain } from './offchain'
 import { cancellation } from './cancellation'
+import { erc721 as erc721script } from './erc721'
 
 console.log(`
 ██████╗ ██╗███████╗    ███╗   ███╗██╗   ██╗██╗  ████████╗██╗███████╗██╗ ██████╗
@@ -20,7 +21,7 @@ console.log(`
 const main = async () => {
   const provider = new providers.JsonRpcProvider()
   const deployer = await provider.getSigner(0)
-  const { safeFactory, safe, erc20, counter } = await deployContracts(deployer)
+  const { safeFactory, safe, erc20, counter, erc721 } = await deployContracts(deployer)
   console.log()
 
   const owner1 = provider.getSigner(0)
@@ -42,6 +43,7 @@ const main = async () => {
   await raw(safeSdk, owners, counter)
   await offchain(safeSdk, owners, counter)
   await cancellation(safeSdk, owners, counter)
+  await erc721script(safeSdk, owners, erc721)
 }
 
 main()
