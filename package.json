@@ -8,7 +8,8 @@
     "build:watch": "npx tsc --watch",
     "start": "node build/index.js",
     "start:watch": "npx nodemon build/index.js",
-    "dev": "npx concurrently \"npm run build:watch\" \"npm run start:watch\""
+    "dev": "npx concurrently \"npm run build:watch\" \"npm run start:watch\"",
+    "network:local": "ganache-cli"
   },
   "author": "",
   "license": "ISC",

@@ -38,6 +38,12 @@ Watch:
 npm run build:watch
 ```
 
+### Run the local network
+
+```
+npm run network:local
+```
+
 ### Run the script
 
 ```
