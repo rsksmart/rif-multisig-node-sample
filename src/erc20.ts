@@ -27,7 +27,7 @@ export const erc20 = async (safeSdk: Safe, owners: Signer[], erc20: Contract) =>
 
   console.log('Sending funds')
 
-  const txBuilder = new ERC20TransactionBuilder(safe1, erc20)
+  const txBuilder = new ERC20TransactionBuilder(safe1, erc20.address)
   const sendBalanceTx = await txBuilder.transfer(to, BigNumber.from(value))
 
   await approveAndExecute(safe1, safe2)(sendBalanceTx)
