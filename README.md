@@ -12,6 +12,7 @@
 - Update polices
 - Receive/send RBTC
 - Receive/send ERC20
+- Receive/send ERC721
 - Call contract
 - Off-chain signatures
 - Reject and cancel tx
