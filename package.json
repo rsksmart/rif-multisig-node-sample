@@ -16,7 +16,7 @@
   "devDependencies": {
     "concurrently": "^6.2.0",
     "ganache-cli": "^6.12.2",
-    "nodemon": "^2.0.7",
+    "nodemon": "^2.0.22",
     "typescript": "^4.3.2"
   },
   "dependencies": {
